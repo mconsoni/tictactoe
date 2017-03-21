@@ -1,0 +1,17 @@
+{
+  "name": "tictactoe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tictactoe.js",
+  "scripts": {
+    "start": "node node_modules/http-server/bin/http-server . -p 8081 -d false"
+  },
+  "author": "Mariano G. Consoni",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "http-server": "^0.9.0",
+    "jquery": "^3.2.1"
+  }
+}
