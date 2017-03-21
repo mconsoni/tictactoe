@@ -16,22 +16,26 @@ function newGame() {
     grid = [ undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined ]
     curPlayer = 0;
     finishGame = false;
+
     player2PC = false;
     if ($('#player2').val() === 'pc')
         player2PC = true;
+
     cleanGrid();
-    updateTurn();
 
     if ($('#start').val() === 'p2') {
         curPlayer = 1;
-        makeMove();
+        if (player2PC)
+            makeMove();
     }
+
+    updateTurn();
 }
 
 function click(id) {
     var pos = id.substring(1);
-    // Check valuo of pos because an event is triggered without target.id
-    if (curPlayer == 0 && !finishGame && parseInt(pos) >= 0 && grid[pos] === undefined) {
+    // Check value of pos because an event is triggered without target.id
+    if (!finishGame && parseInt(pos) >= 0 && grid[pos] === undefined) {
         move(pos);
         if (!finishGame) {
             if (player2PC)
@@ -99,10 +103,8 @@ function makeMove() {
 
     }
 
-    if (nextmove2 !== undefined) {
-        console.log("move 1");
+    if (nextmove2 !== undefined)
         return move(nextmove2);
-    }
 
     var max = 0;
     var maxPos = undefined;
@@ -112,16 +114,12 @@ function makeMove() {
             maxPos = c;
         }
     }
-    if (maxPos !== undefined) {
-        console.log("move 2");
+    if (maxPos !== undefined)
         return move(maxPos);
-    }
 
     for (var c = 0; c < 9; c++)
-        if (grid[prefMoves[c]] === undefined) {
-            console.log("move 4");
+        if (grid[prefMoves[c]] === undefined)
             return move(prefMoves[c]);
-        }
 }
 
 function checkFinish() {
